@@ -25,14 +25,11 @@ import = ["~/.config/alacritty/theme.toml"]
 
 ## Usage
 
-`alacritty-theme-manager` : shuffle through 10 random (dark) themes 🔀
-
-`alacritty-theme-manager <theme-name>` : change theme to _theme-name_ 🌈
-
-`alacritty-theme-manager ls` : list all available themes 📋
-
-`alacritty-theme-manager star` : star current theme ⭐️
-
-`alacritty-theme-manager ls star` : list starred themes 🌟
-
-`alacritty-theme-manager rm <theme-name>` : remove _theme-name_ from starred themes ❌
+- `atm <theme>` : change theme to **_theme_** 🌈
+- `atm` / `atm r` : **_shuffle_** through 10 random (dark) themes 💿
+- `atm i` : get **_info_** about current theme ℹ️
+- `atm ls` : list **_all_** available themes 📋
+- `atm s` : **_star_** current theme ⭐️
+- `atm ls s` / `atm s ls` : **_list_** starred themes 🌟
+- `atm u` : unstar **_current_** theme ❌
+- `atm u <theme>` : unstar **_theme_** ❌
