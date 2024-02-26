@@ -1,11 +1,20 @@
-# Function to change theme
-# test 3
+# Function to manage themes in the Alacritty terminal emulator
 function alacritty-theme-manager -d "Manage Alacritty themes"
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls ~/.config/alacritty/themes/themes))|read -a themes
     # Starred themes
+    if not -e ~/.config/alacritty/themes_starred
+        echo $(touch ~/.config/alacritty/themes_starred)
+    end
     echo $(cat ~/.config/alacritty/themes_starred)|read -a themes_starred
     # Light themes
+    if not -e ~/.config/alacritty/themes_light
+        echo $(touch ~/.config/alacritty/themes_light)
+        set themes_light alabaster ashes_light atom_one_light ayu_light catppuccin_latte everforest_light github_light github_light_colorblind github_light_default github_light_high_contrast github_light_tritanopia gruvbox_light gruvbox_material_hard_light gruvbox_material_medium_light night_owlish_light noctis-lux nord_light papercolor_light papertheme pencil_light rose-pine-dawn solarized_light
+        for theme in themes_light
+            echo $(theme >> ~/.config/alacritty/themes_light)
+        end
+    end
     echo $(cat ~/.config/alacritty/themes_light)|read -a themes_light
     # Dark themes
     for theme in $all
@@ -14,6 +23,9 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
         end
     end
     # Current theme
+    if not -e ~/.config/alacritty/theme_current
+        echo $(papercolor_dark >> ~/.config/alacritty/theme_current)
+    end
     set theme_current $(cat ~/.config/alacritty/theme_current)
     switch $(count $argv)
         case 0
