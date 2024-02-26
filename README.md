@@ -1,6 +1,6 @@
 # alacritty-theme-manager
 
-Plugin to easily switch theme in [Alacritty](https://alacritty.org) ([GitHub](https://github.com/alacritty/alacritty))
+[Fish shell](https://fishshell.com) ([GitHub](https://github.com/fish-shell/fish-shell)) plugin to easily switch theme in [Alacritty](https://alacritty.org) ([GitHub](https://github.com/alacritty/alacritty))
 
 # Installation
 
