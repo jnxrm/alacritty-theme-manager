@@ -1,7 +1,7 @@
 # Function to manage themes in the Alacritty terminal emulator
 function alacritty-theme-manager -d "Manage Alacritty themes"
     # All themes
-    echo $(string match -gr "(.*)\.toml" $(ls ~/.config/alacritty/themes/themes))|read -a themes
+    echo $(string match -gr "(.*)\.toml" $(ls ~/.config/alacritty/themes/themes))|read -a themes_all
     # Starred themes
     if not test -e ~/.config/alacritty/themes_starred
         echo $(touch ~/.config/alacritty/themes_starred)
@@ -18,7 +18,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
     echo $(cat ~/.config/alacritty/themes_light)|read -a themes_light
     # Dark themes
     set themes_dark
-    for theme in $all
+    for theme in $themes_all
         if not contains $theme $themes_light
             set -a themes_dark $theme
         end
@@ -52,7 +52,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
             # Print all themes
             if test $argv = ls
                 set counter 0
-                for theme in $themes
+                for theme in $themes_all
                     set counter (math $counter + 1)
                     if contains $theme $themes_starred
                         echo -e "\e[4;5m$counter\e[0m: \e[1;3m$theme\e[0m "\uf005
@@ -97,7 +97,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
                 echo $theme_random >> ~/.config/alacritty/theme_current
             else
                 # 
-                if contains $argv $themes
+                if contains $argv $themes_all
                     cp ~/.config/alacritty/themes/themes/$argv.toml ~/.config/alacritty/
                     mv ~/.config/alacritty/$argv.toml ~/.config/alacritty/theme.toml
                     echo -n > ~/.config/alacritty/theme_current
@@ -122,7 +122,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
                 end
             else if test $argv[1] = star
                 set theme $argv[2]
-                if contains $theme $themes
+                if contains $theme $themes_all
                     if not contains $theme $themes_starred
                         echo $theme >> ~/.config/alacritty/themes_starred
                         echo -e "\e[1;3m$theme\e[0m successfully added to "\uf005\uf005\uf005
@@ -134,7 +134,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
                 end
             else if test $argv[1] = rm
                 set theme $argv[2]
-                if contains $theme $themes
+                if contains $theme $themes_all
                     if contains $theme $themes_starred
                         set themes_starred (string match -v $theme $themes_starred)
                         echo -n > ~/.config/alacritty/themes_starred
