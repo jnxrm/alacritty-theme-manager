@@ -1,5 +1,5 @@
 # Function to manage themes in the Alacritty terminal emulator
-function atm -d "Manage Alacritty themes"
+function atm -d "alacritty-theme-manager"
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls ~/.config/alacritty/themes/themes))|read -a themes_all
     # Starred themes
