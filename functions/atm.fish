@@ -50,7 +50,7 @@ function atm -d "Manage Alacritty themes"
             echo $theme_random >> ~/.config/alacritty/theme_current
         case 1
             # Print all themes
-            if test $argv = l
+            if test $argv = ls
                 set counter 0
                 for theme in $themes_all
                     set counter (math $counter + 1)
@@ -123,11 +123,11 @@ function atm -d "Manage Alacritty themes"
                 end
             end
         case 2
-            if test $argv[1] = s && test $argv[2] = s
+            if test $argv[1] = ls && test $argv[2] = s
                 for theme in $themes_starred
                     echo -e \uf005 "\e[1;3m$theme\e[0m"
                 end
-            else if test $argv[1] = s && test $argv[2] = s
+            else if test $argv[1] = s && test $argv[2] = ls
                 for theme in $themes_starred
                     echo -e \uf005 "\e[1;3m$theme\e[0m"
                 end
