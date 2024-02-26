@@ -23,7 +23,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
         end
     end
     # Current theme
-    if not -e ~/.config/alacritty/theme_current
+    if not test -e ~/.config/alacritty/theme_current
         echo $(papercolor_dark >> ~/.config/alacritty/theme_current)
     end
     set theme_current $(cat ~/.config/alacritty/theme_current)
