@@ -1,5 +1,5 @@
 # Function to change theme
-# test
+# test 2
 function alacritty-theme-manager -d "Manage Alacritty themes"
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls ~/.config/alacritty/themes/themes))|read -a themes
