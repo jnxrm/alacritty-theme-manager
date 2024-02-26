@@ -8,7 +8,7 @@ First, make sure to clone [alacritty-theme](https://github.com/alacritty/alacrit
 
 ```
 mkdir -p ~/.config/alacritty/themes
-git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 ```
 
 Install the plugin with [fisher](https://github.com/jorgebucaran/awsm.fish)
