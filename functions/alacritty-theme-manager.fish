@@ -17,6 +17,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
     end
     echo $(cat ~/.config/alacritty/themes_light)|read -a themes_light
     # Dark themes
+    set themes_dark
     for theme in $all
         if not contains $theme $themes_light
             set -a themes_dark $theme
@@ -24,6 +25,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
     end
     # Current theme
     if not test -e ~/.config/alacritty/theme_current
+        echo $(touch ~/.config/alacritty/theme_current)
         echo papercolor_dark >> ~/.config/alacritty/theme_current
     end
     set theme_current $(cat ~/.config/alacritty/theme_current)
