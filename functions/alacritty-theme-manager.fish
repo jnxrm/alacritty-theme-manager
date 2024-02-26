@@ -11,7 +11,7 @@ function alacritty-theme-manager -d "Manage Alacritty themes"
     if not test -e ~/.config/alacritty/themes_light
         echo $(touch ~/.config/alacritty/themes_light)
         set themes_light alabaster ashes_light atom_one_light ayu_light catppuccin_latte everforest_light github_light github_light_colorblind github_light_default github_light_high_contrast github_light_tritanopia gruvbox_light gruvbox_material_hard_light gruvbox_material_medium_light night_owlish_light noctis-lux nord_light papercolor_light papertheme pencil_light rose-pine-dawn solarized_light
-        for theme in themes_light
+        for theme in $themes_light
             echo $theme >> ~/.config/alacritty/themes_light
         end
     end
