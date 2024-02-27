@@ -6,7 +6,7 @@ function atm -d "alacritty-theme-manager"
 
     # Alacritty directories
     set ala_path ~/.config/alacritty/atm
-    if not -d $ala_path
+    if not test -d $ala_path
         echo $(mkdir $ala_path)
     end
     set ala_themes $ala_path/themes/themes
