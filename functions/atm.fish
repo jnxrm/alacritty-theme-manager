@@ -6,6 +6,10 @@ function atm -d "alacritty-theme-manager"
     # alacritty-themes directory
     set ala_themes ~/.config/alacritty/themes/themes
 
+    echo fisher_path: $fisher_path
+    echo atm_themese: $atm_themes
+    echo ala_themes: $ala_themes
+
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls $THEMES)) | read -a themes_all
 
