@@ -9,7 +9,7 @@ function atm -d "alacritty-theme-manager"
     if not test -d $ala_path
         echo $(mkdir $ala_path)
     end
-    set ala_themes $ala_path/themes/themes
+    set ala_themes ~/.config/alacritty/themes/themes
 
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls $ala_themes))|read -a themes_all
