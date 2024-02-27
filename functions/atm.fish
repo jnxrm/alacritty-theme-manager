@@ -1,18 +1,19 @@
 # Function to manage themes in the Alacritty terminal emulator
 function atm -d "alacritty-theme-manager"
     set fisher_path $__fish_config_dir
-    # Default alacritty config directory
-    set CONFIG ~/.config/alacritty
-    set THEMES $fi
+    set atm_themes $fisher_path/functions/atm_themes
+
+    # alacritty-themes directory
+    set ala_themes ~/.config/alacritty/themes/themes
 
     # All themes
-    echo $(string match -gr "(.*)\.toml" $(ls $CONFIG/themes/themes)) | read -a themes_all
+    echo $(string match -gr "(.*)\.toml" $(ls $THEMES)) | read -a themes_all
 
     # Starred themes
-    if not test -e $CONFIG/themes_starred
-        echo $(touch $CONFIG/themes_starred)
+    if not test -e $atm_themes/atm_themes_starred
+        echo $(touch $fisher_path/atm_themes_starred)
     end
-    echo $(cat $CONFIG/themes_starred)|read -a themes_starred
+    echo $(cat $atm_themes/atm_themes_starred)|read -a themes_starred
 
     # Light themes
 
@@ -24,7 +25,7 @@ function atm -d "alacritty-theme-manager"
     #     end
     # end
     # echo $(cat $CONFIG/themes_light)|read -a themes_light
-    echo $(cat $fisher_path/functions/themes_light)|read -a themes_light
+    echo $(cat $atm_themes/atm_themes_light)|read -a themes_light
 
     # Dark themes
     set themes_dark
@@ -35,12 +36,12 @@ function atm -d "alacritty-theme-manager"
     end
 
     # Current theme
-    if not test -e $CONFIG/theme_current
-        echo $(touch $CONFIG/theme_current)
-        echo base16_default_dark >> $CONFIG/theme_current
+    if not test -e $atm_themes/atm_theme_current
+        echo $(touch $atm_themes/atm_theme_current)
+        echo base16_default_dark >> $atm_themes/atm_theme_current
     else
-        if contains $(cat $CONFIG/theme_current) $themes_all
-            set theme_current $(cat $CONFIG/theme_current)
+        if contains $(cat $atm_themes/atm_theme_current) $themes_all
+            set theme_current $(cat $atm_themes/atm_theme_current)
         else
             set theme_current base16_default_dark
         end
@@ -54,7 +55,7 @@ function atm -d "alacritty-theme-manager"
                     # Star current theme
                     case 1
                         if not contains $theme_current $themes_starred
-                            echo $theme_current >> $CONFIG/themes_starred
+                            echo $theme_current >> $atm_themes/atm_themes_starred
                             echo -e "\e[1;3m$theme_current\e[0m successfully added to "\uf005\uf005\uf005
                         else
                             echo -e "\e[1;3m$theme_current\e[0m is already in "\uf005\uf005\uf005
@@ -70,7 +71,7 @@ function atm -d "alacritty-theme-manager"
                             set theme $argv[2]
                             if contains $theme $themes_all
                                 if not contains $theme $themes_starred
-                                    echo $theme >> $CONFIG/themes_starred
+                                    echo $theme >> $atm_themes/atm_themes_starred
                                     echo -e "\e[1;3m$theme\e[0m successfully added to "\uf005\uf005\uf005
                                 else
                                     echo -e "\e[1;3m$theme\e[0m is already in "\uf005\uf005\uf005
@@ -90,9 +91,9 @@ function atm -d "alacritty-theme-manager"
                     case 1
                         if contains $theme_current $themes_starred
                             set themes_starred (string match -v $theme_current $themes_starred)
-                            echo -n > $CONFIG/themes_starred
+                            echo -n > $atm_themes/atm_themes_starred
                             for theme_starred in $themes_starred
-                                echo $theme_starred >> $CONFIG/themes_starred
+                                echo $theme_starred >> $atm_themes/atm_themes_starred
                             end
                             echo -e "Successfully removed \e[1;3m$theme_current\e[0m from "\uf005\uf005\uf005
                         else
@@ -104,9 +105,9 @@ function atm -d "alacritty-theme-manager"
                         if contains $theme $themes_all
                             if contains $theme $themes_starred
                                 set themes_starred (string match -v $theme $themes_starred)
-                                echo -n > $CONFIG/themes_starred
+                                echo -n > $atm_themes/atm_themes_starred
                                 for theme_starred in $themes_starred
-                                    echo $theme_starred >> $CONFIG/themes_starred
+                                    echo $theme_starred >> $atm_themes/atm_themes_starred
                                 end
                                 echo -e "Successfully removed \e[1;3m$theme\e[0m from "\uf005\uf005\uf005
                             else
@@ -147,10 +148,10 @@ function atm -d "alacritty-theme-manager"
             # Change theme to <theme>
             case \*
                 if contains $argv $themes_all
-                    cp $CONFIG/themes/themes/$argv.toml $CONFIG/
-                    mv $CONFIG/$argv.toml $CONFIG/theme.toml
-                    echo -n > $CONFIG/theme_current
-                    echo $argv >> $CONFIG/theme_current
+                    cp $ala_themes/$argv.toml $atm_themes/theme.toml
+                    # mv $ala_themes/$argv.toml $atm_themes/theme.toml
+                    echo -n > $atm_themes/atm_theme_current
+                    echo $argv >> $atm_themes/atm_theme_current
                     if contains $argv $themes_starred
                         echo -e "Current theme: \e[1;3m$argv\e[0m" \uf005
                     else
@@ -166,8 +167,8 @@ function atm -d "alacritty-theme-manager"
         while test $counter -lt 10
             set counter (math $counter + 1)
             set theme_random $(random choice $themes_dark)
-            cp $CONFIG/themes/themes/$theme_random.toml $CONFIG/
-            mv $CONFIG/$theme_random.toml $CONFIG/theme.toml
+            cp $ala_themes/$theme_random.toml $atm_themes/theme.toml
+            # mv $CONFIG/$theme_random.toml $CONFIG/theme.toml
             sleep 0.05
         end
         # Echo theme name in italic using escape characters
@@ -176,7 +177,7 @@ function atm -d "alacritty-theme-manager"
         else
             echo -e "Theme changed to: \e[1;3m$theme_random\e[0m"
         end
-        echo -n > $CONFIG/theme_current
-        echo $theme_random >> $CONFIG/theme_current
+        echo -n > $atm_themes/atm_theme_current
+        echo $theme_random >> $atm_themes/atm_theme_current
     end
 end
