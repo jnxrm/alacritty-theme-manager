@@ -11,13 +11,13 @@ function atm -d "alacritty-theme-manager"
     echo ala_themes: $ala_themes
 
     # All themes
-    echo $(string match -gr "(.*)\.toml" $(ls $THEMES)) | read -a themes_all
+    echo $(string match -gr "(.*)\.toml" $(ls $THEMES))|read -a themes_all
 
     # Starred themes
     if not test -e $atm_themes/atm_themes_starred
         echo $(touch $atm_themes/atm_themes_starred)
     end
-    echo $(cat $atm_themes/atm_themes_starred) | read -a themes_starred
+    echo $(cat $atm_themes/atm_themes_starred)|read -a themes_starred
 
     # Light themes
 
@@ -30,7 +30,7 @@ function atm -d "alacritty-theme-manager"
     # end
     # echo $(cat $CONFIG/themes_light) | read -a themes_light
 
-    echo $(cat $atm_themes/atm_themes_light) | read -a themes_light
+    echo $(cat $atm_themes/atm_themes_light)|read -a themes_light
 
     # Dark themes
     set themes_dark
