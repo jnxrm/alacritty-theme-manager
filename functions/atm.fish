@@ -112,8 +112,8 @@ function atm -d "alacritty-theme-manager"
                             echo -e "\e[1;3m$theme\e[0m is \e[4mnot\e[0m a valid theme name.\nCheck available theme names with the function \e[1;3mlist_themes\e[0m"
                         end
                     case \*
-                        echo Maximum number of arguments allowed: 2
-                        echo You passed: $(count $argv[3..]) too many
+                        echo "Option '-u' can take a maximum of 1 parameter,"
+                        echo You provided $(count $argv[2..]): $(string join ", " \'$argv[2..]\')
                 end
             # Get info about current theme
             case -i
