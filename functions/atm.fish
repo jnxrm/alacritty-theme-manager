@@ -36,7 +36,7 @@ function atm -d "alacritty-theme-manager"
     set themes_dark
     for theme in $themes_all
         if not contains $theme $themes_light
-            set -a themes_dark $theme
+            set -a $themes_dark $theme
         end
     end
 
