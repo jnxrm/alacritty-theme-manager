@@ -1,6 +1,6 @@
 # Function to manage themes in the Alacritty terminal emulator
 function atm -d "alacritty-theme-manager"
-    echo fisher path: $fisher_path
+    set fisher_path $__fish_config_dir
     # Default alacritty config directory
     set CONFIG ~/.config/alacritty
     set THEMES $fi
