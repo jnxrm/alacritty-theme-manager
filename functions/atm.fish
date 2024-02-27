@@ -4,7 +4,8 @@ function atm -d "alacritty-theme-manager"
     set atm_themes $fisher_path/functions/atm_themes
 
     # alacritty-themes directory
-    set ala_themes ~/.config/alacritty/themes/themes
+    set ala_config ~/.config/alacritty
+    set ala_themes $ala_config/themes/themes
 
     echo fisher_path: $fisher_path
     echo atm_themese: $atm_themes
@@ -172,8 +173,8 @@ function atm -d "alacritty-theme-manager"
         while test $counter -lt 10
             set counter (math $counter + 1)
             set theme_random $(random choice $themes_dark)
-            cp $ala_themes/$theme_random.toml $atm_themes
-            mv $atm_themes/$theme_random.toml $atm_themes/atm_theme.toml
+            cp $ala_themes/$theme_random.toml $ala_config
+            mv $ala_config/$theme_random.toml $ala_config/theme.toml
             sleep 0.05
         end
         # Echo theme name in italic using escape characters
