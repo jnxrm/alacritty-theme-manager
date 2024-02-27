@@ -172,8 +172,8 @@ function atm -d "alacritty-theme-manager"
         while test $counter -lt 10
             set counter (math $counter + 1)
             set theme_random $(random choice $themes_dark)
-            cp $ala_themes/$theme_random.toml $atm_themes/atm_theme.toml
-            # mv $CONFIG/$theme_random.toml $CONFIG/theme.toml
+            cp $ala_themes/$theme_random.toml $atm_themes
+            mv $atm_themes/$theme_random.toml $atm_themes/atm_theme.toml
             sleep 0.05
         end
         # Echo theme name in italic using escape characters
