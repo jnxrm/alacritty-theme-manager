@@ -21,7 +21,8 @@ function atm -d "alacritty-theme-manager"
     #         echo $theme >> $CONFIG/themes_light
     #     end
     # end
-    echo $(cat $CONFIG/themes_light)|read -a themes_light
+    # echo $(cat $CONFIG/themes_light)|read -a themes_light
+    echo $(cat themes_light)|read -a themes_light
 
     # Dark themes
     set themes_dark
