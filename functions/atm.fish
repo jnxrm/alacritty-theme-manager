@@ -11,7 +11,7 @@ function atm -d "alacritty-theme-manager"
     echo ala_themes: $ala_themes
 
     # All themes
-    echo $(string match -gr "(.*)\.toml" $(ls $THEMES))|read -a themes_all
+    echo $(string match -gr "(.*)\.toml" $(ls $ala_themes))|read -a themes_all
 
     # Starred themes
     if not test -e $atm_themes/atm_themes_starred
@@ -36,7 +36,7 @@ function atm -d "alacritty-theme-manager"
     set themes_dark
     for theme in $themes_all
         if not contains $theme $themes_light
-            set -a $themes_dark $theme
+            set -a themes_dark $theme
         end
     end
 
