@@ -11,7 +11,7 @@ function atm -d "alacritty-theme-manager"
 
     # Starred themes
     if not test -e $atm_themes/atm_themes_starred
-        echo $(touch $fisher_path/atm_themes_starred)
+        echo $(touch $atm_themes/atm_themes_starred)
     end
     echo $(cat $atm_themes/atm_themes_starred)|read -a themes_starred
 
