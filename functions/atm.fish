@@ -17,7 +17,7 @@ function atm -d "alacritty-theme-manager"
     if not test -e $atm_themes/atm_themes_starred
         echo $(touch $atm_themes/atm_themes_starred)
     end
-    echo $(cat $atm_themes/atm_themes_starred)|read -a themes_starred
+    echo $(cat $atm_themes/atm_themes_starred) | read -a themes_starred
 
     # Light themes
 
@@ -28,8 +28,9 @@ function atm -d "alacritty-theme-manager"
     #         echo $theme >> $CONFIG/themes_light
     #     end
     # end
-    # echo $(cat $CONFIG/themes_light)|read -a themes_light
-    echo $(cat $atm_themes/atm_themes_light)|read -a themes_light
+    # echo $(cat $CONFIG/themes_light) | read -a themes_light
+
+    echo $(cat $atm_themes/atm_themes_light) | read -a themes_light
 
     # Dark themes
     set themes_dark
@@ -152,7 +153,7 @@ function atm -d "alacritty-theme-manager"
             # Change theme to <theme>
             case \*
                 if contains $argv $themes_all
-                    cp $ala_themes/$argv.toml $atm_themes/theme.toml
+                    cp $ala_themes/$argv.toml $atm_themes/atm_theme.toml
                     # mv $ala_themes/$argv.toml $atm_themes/theme.toml
                     echo -n > $atm_themes/atm_theme_current
                     echo $argv >> $atm_themes/atm_theme_current
@@ -171,7 +172,7 @@ function atm -d "alacritty-theme-manager"
         while test $counter -lt 10
             set counter (math $counter + 1)
             set theme_random $(random choice $themes_dark)
-            cp $ala_themes/$theme_random.toml $atm_themes/theme.toml
+            cp $ala_themes/$theme_random.toml $atm_themes/atm_theme.toml
             # mv $CONFIG/$theme_random.toml $CONFIG/theme.toml
             sleep 0.05
         end
