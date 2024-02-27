@@ -1,15 +1,12 @@
 # Function to manage themes in the Alacritty terminal emulator
 function atm -d "alacritty-theme-manager"
+    # atm-themes directory
     set fisher_path $__fish_config_dir
     set atm_themes $fisher_path/functions/atm_themes
 
-    # alacritty-themes directory
+    # Alacritty directories
     set ala_config ~/.config/alacritty
     set ala_themes $ala_config/themes/themes
-
-    echo fisher_path: $fisher_path
-    echo atm_themese: $atm_themes
-    echo ala_themes: $ala_themes
 
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls $ala_themes))|read -a themes_all
@@ -21,16 +18,6 @@ function atm -d "alacritty-theme-manager"
     echo $(cat $atm_themes/atm_themes_starred)|read -a themes_starred
 
     # Light themes
-
-    # if not test -e $CONFIG/themes_light
-    #     echo $(touch $CONFIG/themes_light)
-    #     set themes_light alabaster ashes_light atom_one_light ayu_light catppuccin_latte everforest_light github_light github_light_colorblind github_light_default github_light_high_contrast github_light_tritanopia gruvbox_light gruvbox_material_hard_light gruvbox_material_medium_light night_owlish_light noctis-lux nord_light papercolor_light papertheme pencil_light rose-pine-dawn solarized_light
-    #     for theme in $themes_light
-    #         echo $theme >> $CONFIG/themes_light
-    #     end
-    # end
-    # echo $(cat $CONFIG/themes_light) | read -a themes_light
-
     echo $(cat $atm_themes/atm_themes_light)|read -a themes_light
 
     # Dark themes
@@ -154,8 +141,7 @@ function atm -d "alacritty-theme-manager"
             # Change theme to <theme>
             case \*
                 if contains $argv $themes_all
-                    cp $ala_themes/$argv.toml $atm_themes/atm_theme.toml
-                    # mv $ala_themes/$argv.toml $atm_themes/theme.toml
+                    cp $ala_themes/$argv.toml $ala_config/atm_theme.toml
                     echo -n > $atm_themes/atm_theme_current
                     echo $argv >> $atm_themes/atm_theme_current
                     if contains $argv $themes_starred
@@ -173,8 +159,7 @@ function atm -d "alacritty-theme-manager"
         while test $counter -lt 10
             set counter (math $counter + 1)
             set theme_random $(random choice $themes_dark)
-            cp $ala_themes/$theme_random.toml $ala_config
-            mv $ala_config/$theme_random.toml $ala_config/theme.toml
+            cp $ala_themes/$theme_random.toml $ala_config/atm_theme.toml
             sleep 0.05
         end
         # Echo theme name in italic using escape characters
