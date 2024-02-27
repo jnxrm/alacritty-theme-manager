@@ -1,4 +1,5 @@
 # Function to manage themes in the Alacritty terminal emulator
+# test
 function atm -d "alacritty-theme-manager"
     set CONFIG ~/.config/alacritty
     # All themes
