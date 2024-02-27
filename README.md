@@ -23,6 +23,12 @@ Then, add the following line to `alacritty.toml`
 import = ["~/.config/alacritty/theme.toml"]
 ```
 
+It is also smart to enable `live_config_reload` in `alacritty.toml`
+
+```
+live_config_reload = true
+```
+
 ## Usage
 
 - `atm <theme>` : change theme to **_theme_** 🌈
