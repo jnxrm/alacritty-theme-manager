@@ -2,6 +2,7 @@
 function atm -d "alacritty-theme-manager"
     # Default alacritty config directory
     set CONFIG ~/.config/alacritty
+    set THEMES $fi
 
     # All themes
     echo $(string match -gr "(.*)\.toml" $(ls $CONFIG/themes/themes)) | read -a themes_all
@@ -22,7 +23,7 @@ function atm -d "alacritty-theme-manager"
     #     end
     # end
     # echo $(cat $CONFIG/themes_light)|read -a themes_light
-    echo $(cat themes_light)|read -a themes_light
+    echo $(cat $fisher_path/functions/themes_light)|read -a themes_light
 
     # Dark themes
     set themes_dark
