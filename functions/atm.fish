@@ -141,7 +141,8 @@ function atm -d "alacritty-theme-manager"
             # Change theme to <theme>
             case \*
                 if contains $argv $themes_all
-                    cp $ala_themes/$argv.toml $ala_config/atm_theme.toml
+                    cp $ala_themes/$argv.toml $atm_themes
+                    mv $atm_themes/$argv.toml $atm_themes/atm_theme.toml
                     echo -n > $atm_themes/atm_theme_current
                     echo $argv >> $atm_themes/atm_theme_current
                     if contains $argv $themes_starred
@@ -159,7 +160,8 @@ function atm -d "alacritty-theme-manager"
         while test $counter -lt 10
             set counter (math $counter + 1)
             set theme_random $(random choice $themes_dark)
-            cp $ala_themes/$theme_random.toml $ala_config/atm_theme.toml
+            cp $ala_themes/$theme_random.toml $atm_themes
+            mv $atm_themes/$theme_random.toml $atm_themes/atm_theme.toml
             sleep 0.05
         end
         # Echo theme name in italic using escape characters
