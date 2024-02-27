@@ -32,8 +32,8 @@ live_config_reload = true
 ## Usage
 
 - `atm` : change to a **_random_** (dark) theme 🔀
-- `atm <theme>` : change theme to **_\<theme\>_** 🌈
 - `atm ls` : list **_all_** available themes 📋
+- `atm <theme>` : change theme to **_\<theme\>_** 🌈
 - `atm -s` : **_star_** current theme ⭐️
 - `atm -s ls` : **_list_** starred themes 🌟
 - `atm -u` : unstar **_current_** theme ❌
