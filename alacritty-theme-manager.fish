@@ -1,5 +1,5 @@
 # Function to manage themes in the Alacritty terminal emulator
-function atm_test -d "alacritty-theme-manager"
+function atm -d "alacritty-theme-manager"
     # Paths
     set -g fisher_path $__fish_config_dir
     set -g atm_path $fisher_path/functions/atm
